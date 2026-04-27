@@ -1,0 +1,43 @@
+#nullable enable
+
+namespace Triverse
+{
+    public partial interface IGenerationClient
+    {
+        /// <summary>
+        /// Generate geometry from an image
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Triverse.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Triverse.TaskCreatedResponse> CreateImageToMeshTaskAsync(
+
+            global::Triverse.ImageToModelRequest request,
+            global::Triverse.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Generate geometry from an image
+        /// </summary>
+        /// <param name="imageFile"></param>
+        /// <param name="imageUrl"></param>
+        /// <param name="modelVersion"></param>
+        /// <param name="polygonLimit"></param>
+        /// <param name="textureSize"></param>
+        /// <param name="seed"></param>
+        /// <param name="metadata"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::System.InvalidOperationException"></exception>
+        global::System.Threading.Tasks.Task<global::Triverse.TaskCreatedResponse> CreateImageToMeshTaskAsync(
+            string? imageFile = default,
+            string? imageUrl = default,
+            string? modelVersion = default,
+            int? polygonLimit = default,
+            int? textureSize = default,
+            int? seed = default,
+            object? metadata = default,
+            global::Triverse.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+    }
+}

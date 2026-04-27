@@ -1,0 +1,656 @@
+openapi: 3.0.3
+info:
+  title: Triverse AI API
+  description: |
+    API for Triverse AI 3D generation, texturing, uploads, utilities, task polling,
+    and downloads.
+
+    This OpenAPI document is manually maintained from the public Triverse API
+    documentation because Triverse does not publish a downloadable OpenAPI document.
+  version: "1.0.0"
+servers:
+  - url: https://api.triverse.ai/api/v1
+security:
+  - BearerAuth: []
+tags:
+  - name: users
+  - name: uploads
+  - name: generation
+  - name: texturing
+  - name: utilities
+  - name: tasks
+paths:
+  /users/me:
+    get:
+      operationId: getCurrentUser
+      summary: Get the authenticated user
+      tags: [users]
+      responses:
+        "200":
+          description: User profile
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserResponse"
+  /users/balance:
+    get:
+      operationId: getUserBalance
+      summary: Get account balance
+      tags: [users]
+      responses:
+        "200":
+          description: Current credit balance
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BalanceResponse"
+  /upload/image:
+    post:
+      operationId: uploadImage
+      summary: Upload an image
+      tags: [uploads]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/FileUploadRequest"
+      responses:
+        "200":
+          description: Uploaded image reference
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UploadResponse"
+  /upload/model:
+    post:
+      operationId: uploadModel
+      summary: Upload a 3D model
+      tags: [uploads]
+      parameters:
+        - name: modelVariant
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [geometry, textured]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/FileUploadRequest"
+      responses:
+        "200":
+          description: Uploaded model reference
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UploadResponse"
+  /upload/presigned-upload-url:
+    post:
+      operationId: createPresignedUploadUrl
+      summary: Create a presigned upload URL
+      tags: [uploads]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PresignedUploadUrlRequest"
+      responses:
+        "200":
+          description: Presigned upload URL
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PresignedUploadUrlResponse"
+  /upload/presigned-get-url:
+    post:
+      operationId: createPresignedGetUrl
+      summary: Create a presigned download URL for an uploaded file
+      tags: [uploads]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PresignedGetUrlRequest"
+      responses:
+        "200":
+          description: Presigned download URL
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PresignedGetUrlResponse"
+  /tasks/text-to-model:
+    post:
+      operationId: createTextToModelTask
+      summary: Generate a textured 3D model from text
+      tags: [generation]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TextToModelRequest"
+      responses:
+        "200":
+          description: Task created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskCreatedResponse"
+  /tasks/text-to-mesh:
+    post:
+      operationId: createTextToMeshTask
+      summary: Generate geometry from text
+      tags: [generation]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TextToModelRequest"
+      responses:
+        "200":
+          description: Task created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskCreatedResponse"
+  /tasks/image-to-model:
+    post:
+      operationId: createImageToModelTask
+      summary: Generate a textured 3D model from an image
+      tags: [generation]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImageToModelRequest"
+      responses:
+        "200":
+          description: Task created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskCreatedResponse"
+  /tasks/image-to-mesh:
+    post:
+      operationId: createImageToMeshTask
+      summary: Generate geometry from an image
+      tags: [generation]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImageToModelRequest"
+      responses:
+        "200":
+          description: Task created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskCreatedResponse"
+  /tasks/texture-model:
+    post:
+      operationId: createTextureModelTask
+      summary: Texture an existing 3D model from an image
+      tags: [texturing]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TextureModelRequest"
+      responses:
+        "200":
+          description: Task created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskCreatedResponse"
+  /tasks/text-to-texture:
+    post:
+      operationId: createTextToTextureTask
+      summary: Texture an existing 3D model from text
+      tags: [texturing]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TextToTextureRequest"
+      responses:
+        "200":
+          description: Task created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskCreatedResponse"
+  /tasks/convert-model-format:
+    post:
+      operationId: createConvertModelFormatTask
+      summary: Convert a model to another format
+      tags: [utilities]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConvertModelFormatRequest"
+      responses:
+        "200":
+          description: Task created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskCreatedResponse"
+  /tasks/model-preview-render:
+    post:
+      operationId: createModelPreviewRenderTask
+      summary: Render a preview image for a model
+      tags: [utilities]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ModelPreviewRenderRequest"
+      responses:
+        "200":
+          description: Task created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskCreatedResponse"
+  /tasks/model-remesh:
+    post:
+      operationId: createModelRemeshTask
+      summary: Remesh a model
+      tags: [utilities]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ModelRemeshRequest"
+      responses:
+        "200":
+          description: Task created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskCreatedResponse"
+  /tasks/image-generation:
+    post:
+      operationId: createImageGenerationTask
+      summary: Generate an image
+      tags: [utilities]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImageGenerationRequest"
+      responses:
+        "200":
+          description: Task created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskCreatedResponse"
+  /tasks/{task_uuid}:
+    get:
+      operationId: getTask
+      summary: Get task status
+      tags: [tasks]
+      parameters:
+        - name: task_uuid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Task status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskStatusResponse"
+  /tasks/url/{task_uuid}:
+    get:
+      operationId: getTaskAssetUrl
+      summary: Get generated asset URLs
+      tags: [tasks]
+      parameters:
+        - name: task_uuid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Asset URLs
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskAssetUrlResponse"
+  /tasks/download/{task_uuid}:
+    get:
+      operationId: downloadTaskAsset
+      summary: Download generated assets
+      tags: [tasks]
+      parameters:
+        - name: task_uuid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Generated asset archive or model file
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    UserResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        uuid:
+          type: string
+        email:
+          type: string
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    BalanceResponse:
+      type: object
+      properties:
+        balance:
+          type: number
+          format: double
+        credits:
+          type: number
+          format: double
+        subscription:
+          type: string
+    FileUploadRequest:
+      type: object
+      required: [file]
+      properties:
+        file:
+          type: string
+          format: binary
+    UploadResponse:
+      type: object
+      properties:
+        file_key:
+          type: string
+        url:
+          type: string
+          format: uri
+        filename:
+          type: string
+        content_type:
+          type: string
+    PresignedUploadUrlRequest:
+      type: object
+      required: [filename]
+      properties:
+        filename:
+          type: string
+        content_type:
+          type: string
+    PresignedUploadUrlResponse:
+      type: object
+      properties:
+        upload_url:
+          type: string
+          format: uri
+        file_key:
+          type: string
+        headers:
+          type: object
+    PresignedGetUrlRequest:
+      type: object
+      required: [file_key]
+      properties:
+        file_key:
+          type: string
+        filename:
+          type: string
+    PresignedGetUrlResponse:
+      type: object
+      properties:
+        download_url:
+          type: string
+          format: uri
+        url:
+          type: string
+          format: uri
+        expires_at:
+          type: string
+          format: date-time
+    TextToModelRequest:
+      type: object
+      required: [prompt]
+      properties:
+        prompt:
+          type: string
+        negative_prompt:
+          type: string
+        model_version:
+          type: string
+        polygon_limit:
+          type: integer
+        texture_size:
+          type: integer
+        seed:
+          type: integer
+        metadata:
+          type: object
+    ImageToModelRequest:
+      type: object
+      properties:
+        image_file:
+          type: string
+        image_url:
+          type: string
+          format: uri
+        model_version:
+          type: string
+        polygon_limit:
+          type: integer
+        texture_size:
+          type: integer
+        seed:
+          type: integer
+        metadata:
+          type: object
+    TextureModelRequest:
+      type: object
+      properties:
+        image_file:
+          type: string
+        image_url:
+          type: string
+          format: uri
+        model_file:
+          type: string
+        model_url:
+          type: string
+          format: uri
+        model_version:
+          type: string
+        texture_size:
+          type: integer
+        polygon_limit:
+          type: integer
+        metadata:
+          type: object
+    TextToTextureRequest:
+      type: object
+      properties:
+        text_prompt:
+          type: string
+        prompt:
+          type: string
+        model_file:
+          type: string
+        model_url:
+          type: string
+          format: uri
+        model_version:
+          type: string
+        texture_size:
+          type: integer
+        polygon_limit:
+          type: integer
+        metadata:
+          type: object
+    ConvertModelFormatRequest:
+      type: object
+      properties:
+        model_file:
+          type: string
+        model_url:
+          type: string
+          format: uri
+        output_format:
+          type: string
+        metadata:
+          type: object
+    ModelPreviewRenderRequest:
+      type: object
+      properties:
+        model_file:
+          type: string
+        model_url:
+          type: string
+          format: uri
+        width:
+          type: integer
+        height:
+          type: integer
+        metadata:
+          type: object
+    ModelRemeshRequest:
+      type: object
+      properties:
+        model_file:
+          type: string
+        model_url:
+          type: string
+          format: uri
+        polygon_limit:
+          type: integer
+        output_format:
+          type: string
+        metadata:
+          type: object
+    ImageGenerationRequest:
+      type: object
+      required: [prompt]
+      properties:
+        prompt:
+          type: string
+        negative_prompt:
+          type: string
+        aspect_ratio:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+        seed:
+          type: integer
+        metadata:
+          type: object
+    TaskCreatedResponse:
+      type: object
+      properties:
+        task_uuid:
+          type: string
+        task_id:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    TaskStatusResponse:
+      type: object
+      properties:
+        task_uuid:
+          type: string
+        task_id:
+          type: string
+        status:
+          type: string
+        progress:
+          type: number
+          format: double
+        result:
+          type: object
+        output:
+          type: object
+        files:
+          type: array
+          items:
+            $ref: "#/components/schemas/TaskFile"
+        error:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    TaskFile:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+        file_key:
+          type: string
+        filename:
+          type: string
+        content_type:
+          type: string
+        kind:
+          type: string
+    TaskAssetUrlResponse:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+        download_url:
+          type: string
+          format: uri
+        preview_url:
+          type: string
+          format: uri
+        files:
+          type: array
+          items:
+            $ref: "#/components/schemas/TaskFile"
