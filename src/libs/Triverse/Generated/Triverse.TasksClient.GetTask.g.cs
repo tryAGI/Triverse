@@ -124,7 +124,7 @@ namespace Triverse
                 PrepareGetTaskRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    taskUuid: taskUuid);
+                    taskUuid: taskUuid!);
 
                 return __httpRequest;
             }
