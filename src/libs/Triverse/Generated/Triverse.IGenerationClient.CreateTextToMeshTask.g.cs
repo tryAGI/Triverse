@@ -19,6 +19,18 @@ namespace Triverse
         /// <summary>
         /// Generate geometry from text
         /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Triverse.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Triverse.AutoSDKHttpResponse<global::Triverse.TaskCreatedResponse>> CreateTextToMeshTaskAsResponseAsync(
+
+            global::Triverse.TextToModelRequest request,
+            global::Triverse.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Generate geometry from text
+        /// </summary>
         /// <param name="prompt"></param>
         /// <param name="negativePrompt"></param>
         /// <param name="modelVersion"></param>
