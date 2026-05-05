@@ -46,7 +46,7 @@ namespace Triverse
         /// <summary>
         /// 
         /// </summary>
-        public GenerationClient Generation => new GenerationClient(HttpClient, authorizations: Authorizations, options: Options)
+        public GenerationClient Generation => new GenerationClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -55,7 +55,7 @@ namespace Triverse
         /// <summary>
         /// 
         /// </summary>
-        public TasksClient Tasks => new TasksClient(HttpClient, authorizations: Authorizations, options: Options)
+        public TasksClient Tasks => new TasksClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -64,7 +64,7 @@ namespace Triverse
         /// <summary>
         /// 
         /// </summary>
-        public TexturingClient Texturing => new TexturingClient(HttpClient, authorizations: Authorizations, options: Options)
+        public TexturingClient Texturing => new TexturingClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -73,7 +73,7 @@ namespace Triverse
         /// <summary>
         /// 
         /// </summary>
-        public UploadsClient Uploads => new UploadsClient(HttpClient, authorizations: Authorizations, options: Options)
+        public UploadsClient Uploads => new UploadsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -82,7 +82,7 @@ namespace Triverse
         /// <summary>
         /// 
         /// </summary>
-        public UsersClient Users => new UsersClient(HttpClient, authorizations: Authorizations, options: Options)
+        public UsersClient Users => new UsersClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -91,7 +91,7 @@ namespace Triverse
         /// <summary>
         /// 
         /// </summary>
-        public UtilitiesClient Utilities => new UtilitiesClient(HttpClient, authorizations: Authorizations, options: Options)
+        public UtilitiesClient Utilities => new UtilitiesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -130,10 +130,10 @@ namespace Triverse
         /// <param name="options">Client-wide request defaults such as headers, query parameters, retries, and timeout.</param>
         /// <param name="disposeHttpClient">Dispose the HttpClient when the instance is disposed. True by default.</param>
         public TriverseClient(
-            global::System.Net.Http.HttpClient? httpClient = null,
-            global::System.Uri? baseUri = null,
-            global::System.Collections.Generic.List<global::Triverse.EndPointAuthorization>? authorizations = null,
-            global::Triverse.AutoSDKClientOptions? options = null,
+            global::System.Net.Http.HttpClient? httpClient,
+            global::System.Uri? baseUri,
+            global::System.Collections.Generic.List<global::Triverse.EndPointAuthorization>? authorizations,
+            global::Triverse.AutoSDKClientOptions? options,
             bool disposeHttpClient = true)
         {
 
