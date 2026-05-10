@@ -57,5 +57,6 @@ namespace Triverse
         public PresignedUploadUrlResponse()
         {
         }
+
     }
 }
