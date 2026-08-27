@@ -43,38 +43,38 @@ namespace Triverse
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext { get; set; }
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public GenerationClient Generation { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TasksClient Tasks { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TexturingClient Texturing { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public UploadsClient Uploads { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public UsersClient Users { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public UtilitiesClient Utilities { get; }
 

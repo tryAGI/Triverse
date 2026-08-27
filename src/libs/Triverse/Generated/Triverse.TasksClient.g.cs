@@ -10,7 +10,7 @@ namespace Triverse
     public sealed partial class TasksClient : global::Triverse.ITasksClient, global::System.IDisposable
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string DefaultBaseUrl = "https://api.triverse.ai/api/v1";
 
@@ -37,7 +37,7 @@ namespace Triverse
         internal global::System.Lazy<global::System.Text.Json.Serialization.JsonSerializerContext> JsonSerializerContextProvider { get; set; } = new(() => global::Triverse.SourceGenerationContext.Default);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext
         {

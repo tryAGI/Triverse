@@ -4,16 +4,16 @@
 namespace Triverse
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum UploadModelModelVariant
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Geometry,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Textured,
     }

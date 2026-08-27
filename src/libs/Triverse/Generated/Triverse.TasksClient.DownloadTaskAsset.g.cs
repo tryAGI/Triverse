@@ -132,7 +132,7 @@ namespace Triverse
                          __authorization.Location == "Header")
                 {
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
-                } 
+                }
             }
                 global::Triverse.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
@@ -446,7 +446,7 @@ namespace Triverse
                          __authorization.Location == "Header")
                 {
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
-                } 
+                }
             }
                 global::Triverse.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,

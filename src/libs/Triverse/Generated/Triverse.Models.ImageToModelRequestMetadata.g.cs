@@ -4,7 +4,7 @@
 namespace Triverse
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class ImageToModelRequestMetadata
     {
