@@ -20,7 +20,7 @@ namespace Triverse.JsonConverters
                     {
                         return global::Triverse.UploadModelModelVariantExtensions.ToEnum(stringValue);
                     }
-                    
+
                     break;
                 }
                 case global::System.Text.Json.JsonTokenType.Number:

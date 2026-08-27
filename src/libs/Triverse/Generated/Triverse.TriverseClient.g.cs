@@ -14,7 +14,7 @@ namespace Triverse
     public sealed partial class TriverseClient : global::Triverse.ITriverseClient, global::System.IDisposable
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string DefaultBaseUrl = "https://api.triverse.ai/api/v1";
 
@@ -41,7 +41,7 @@ namespace Triverse
         internal global::System.Lazy<global::System.Text.Json.Serialization.JsonSerializerContext> JsonSerializerContextProvider { get; set; } = new(() => global::Triverse.SourceGenerationContext.Default);
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext
         {
@@ -51,7 +51,7 @@ namespace Triverse
 
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public GenerationClient Generation => new GenerationClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -60,7 +60,7 @@ namespace Triverse
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TasksClient Tasks => new TasksClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -69,7 +69,7 @@ namespace Triverse
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public TexturingClient Texturing => new TexturingClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -78,7 +78,7 @@ namespace Triverse
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public UploadsClient Uploads => new UploadsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -87,7 +87,7 @@ namespace Triverse
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public UsersClient Users => new UsersClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -96,7 +96,7 @@ namespace Triverse
         };
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public UtilitiesClient Utilities => new UtilitiesClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
