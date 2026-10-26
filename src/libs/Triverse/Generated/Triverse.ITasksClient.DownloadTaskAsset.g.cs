@@ -30,6 +30,18 @@ namespace Triverse
         /// Download generated assets
         /// </summary>
         /// <param name="taskUuid"></param>
+        /// <returns>The response metadata and an unbuffered body stream. The caller must dispose Body to release the HTTP response.</returns>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Triverse.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Triverse.AutoSDKHttpResponse<global::System.IO.Stream>> DownloadTaskAssetAsStreamAsResponseAsync(
+            string taskUuid,
+            global::Triverse.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Download generated assets
+        /// </summary>
+        /// <param name="taskUuid"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Triverse.ApiException"></exception>
