@@ -20,6 +20,7 @@ namespace Triverse
     #pragma warning restore CS3016
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Triverse.JsonSerializerContextTypes))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<object>), TypeInfoPropertyName = "SystemCollectionsGeneric_ObjectList")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(string[]))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Triverse.UserResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(string))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime))]
